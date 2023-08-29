@@ -1,14 +1,15 @@
 
 #pragma once
 
+#include <type_traits> // std::is_enum
 
 /*
-using reti_t = ret_t<int>;
-
 enum Err: uint8_t {
-  OK = 0;
+  OK = 0; // always need this
   BAD = 127;
 };
+
+using reti_t = ret_t<int, Err>;
 
 reti_t func(int val) {
   reti_t ret;
@@ -17,9 +18,10 @@ reti_t func(int val) {
   return ret;
 }
 */
-template<typename T>
+template<typename T, typename E>
 struct ret_t {
+  static_assert(std::is_enum<E>::value,"E needs to be an enum");
   T value;
-  int error=0;
-  inline explicit operator bool() const noexcept { return error==0 ? true: false; }
+  E error=E::OK;
+  inline explicit operator bool() const noexcept { return error==E::OK ? true: false; }
 };

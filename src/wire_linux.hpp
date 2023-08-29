@@ -68,8 +68,19 @@ extern "C" {
 #include <stdint.h>    // int types
 #include <sys/ioctl.h> // Needed for I2C port
 #include <unistd.h>    // file read/write
+#include <array>
 
 constexpr uint8_t I2C_MAX_BUFFER_SIZE = 32;
+
+#include "return_type.hpp"
+
+enum I2CErr: uint8_t {
+  OK = 0,
+  READ_ERROR = 1
+};
+
+using retu8_t = ret_t<uint8_t, I2CErr>;
+// using reta_t = ret_t<array<uint8_t>, 32>;
 
 class TwoWire {
 public:
@@ -83,14 +94,23 @@ public:
 
   void begin(int sda = 0, int scl = 0) {}
   void begin(int sda, int scl, uint8_t address) {}
-  void set(uint8_t address) {
+  bool set(uint8_t address) {
     addr = address;
     if (ioctl(fd, I2C_SLAVE, addr) < 0) {
       printf("write error\n");
       close(fd); // something is wrong, so stop?
+      return false;
     }
+    return true;
   }
-  void setClock(uint32_t) {}
+  bool setClock(uint32_t speed)  {
+    if (speed != 100000 || speed != 400000) return false;
+    // not sure this works
+    // ioctl(fd, I2C_SET_SPEED, speed); // where I2C_SET_SPEED defined?
+    // maybe try SMBUS? https://docs.kernel.org/i2c/dev-interface.html
+    return true;
+  }
+
   void setClockStretchLimit(uint32_t) {}
   void beginTransmission(uint8_t) {}
   void beginTransmission(int) {}
@@ -126,7 +146,13 @@ public:
     return true;
   }
 
-  uint8_t read(void) { return 0; }
+  retu8_t read(void) {
+    retu8_t ret;
+    int num = ::read(fd, &ret.value, 1);
+    if (num > 0) return ret;
+    return ret;
+  }
+
   bool read(const uint8_t reg, const uint8_t count, uint8_t *const data) {
     // if (count > I2C_MAX_BUFFER_SIZE) count = I2C_MAX_BUFFER_SIZE;
 
