@@ -1,12 +1,12 @@
 # v3.14 required for FetchContent_MakeAvailable
-cmake_minimum_required(VERSION 3.25)
+cmake_minimum_required(VERSION 3.21)
 
 PROJECT(linuxi2c
     VERSION "2023.02.10"
     LANGUAGES CXX
 )
 
-set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
@@ -28,6 +28,13 @@ if(PROJECT_IS_TOP_LEVEL)
 
     set(BUILD_EXAMPLES ON)
     set(BUILD_GTESTS ON)
+
+    include(FetchContent)
+    FetchContent_Declare(
+        gtest
+        URL https://github.com/google/googletest/archive/refs/tags/v1.14.0.zip
+    )
+    FetchContent_MakeAvailable(gtest)
 else()
     message(STATUS "-> ${PROJECT_NAME} is submodule")
     set(BUILD_EXAMPLES OFF)
