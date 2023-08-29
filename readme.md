@@ -2,6 +2,45 @@
 
 **move sensor.hpp to gcisensors**
 
+```cpp
+#include <stdint.h>
+#include <iostream>
+
+using namespace std;
+
+template<typename T>
+struct ret_t {
+  T value;
+  int error=0;
+  inline explicit operator bool() const noexcept { return error==0 ? true: false; }
+};
+
+using retf_t = ret_t<float>;
+
+enum Err: uint8_t {
+  OK = 0,
+  BAD = 1,
+  REALBAD = 2
+};
+
+retf_t test(int val=0) {
+  retf_t ret;
+  if (val == 0) ret.value = 1.2345f;
+  else if (val == 1) ret.error = Err::BAD;
+  else ret.error = Err::REALBAD;
+  return ret;
+}
+
+int main() {
+  retf_t ret = test(2);
+
+  if (ret) cout << ret.value << " " << ret.error << endl;
+  else cout << "wtf: " << ret.error << endl;
+
+  return 0;
+}
+```
+
 ## Why?
 
 Trying to make a cross platform I2C library for Linux and Arduino, but
