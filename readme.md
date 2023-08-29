@@ -1,10 +1,16 @@
-# gciSensors
+# Linux I2C
+
+**move sensor.hpp to gcisensors**
 
 ## Why?
 
 Trying to make a cross platform I2C library for Linux and Arduino, but
 also be able to do simple tests on macOS. This is based off of Arduino
 Wire library.
+
+# Setup
+
+To get i2c headers, Debian/Ubuntu: `sudo apt-get install libi2c-dev`
 
 # MIT License
 

@@ -1,5 +1,5 @@
 list(APPEND apps
-    main.cpp
+    main
 )
 
 foreach(src ${apps})

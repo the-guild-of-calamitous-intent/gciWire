@@ -48,14 +48,13 @@ target_include_directories(${PROJECT_NAME} INTERFACE src)
 
 # Examples ====================================================================
 # option(BUILD_EXAMPLES "Examples" ON)
-# message(STATUS "Building gciSensors examples is ${BUILD_EXAMPLES}")
-# if (BUILD_EXAMPLES)
-#     add_subdirectory(examples)
-# endif()
+message(STATUS "Building gciSensors examples is ${BUILD_EXAMPLES}")
+if (BUILD_EXAMPLES)
+    add_subdirectory(examples)
+endif()
 
 # option(BUILD_GTESTS "build gtests" ON)
 message(STATUS "Building gciSensors gtests is ${BUILD_GTESTS}")
 if (BUILD_GTESTS)
     add_subdirectory(gtests)
 endif()
-

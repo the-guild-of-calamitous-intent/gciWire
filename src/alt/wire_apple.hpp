@@ -58,12 +58,12 @@ dtparam=i2c_arm=on,i2c_arm_baudrate=400000
 
 
 // #include <stddef.h>
-#include <cstdio>      // printf / perror
-#include <cstring>     // memset
-#include <fcntl.h>     // file open
-#include <stdint.h>    // int types
-#include <sys/ioctl.h> // Needed for I2C port
-#include <unistd.h>    // file read/write
+// #include <cstdio>      // printf / perror
+// #include <cstring>     // memset
+// #include <fcntl.h>     // file open
+// #include <stdint.h>    // int types
+// #include <sys/ioctl.h> // Needed for I2C port
+// #include <unistd.h>    // file read/write
 
 constexpr uint8_t I2C_MAX_BUFFER_SIZE = 32;
 
@@ -95,8 +95,8 @@ public:
   bool read(const uint8_t reg, const uint8_t count, uint8_t *const data) { return true; }
 
 protected:
-  int fd;
-  uint8_t outbuf[2];
+  // int fd;
+  // uint8_t outbuf[2];
   uint8_t addr;
 };
 
