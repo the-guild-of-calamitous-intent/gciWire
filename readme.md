@@ -1,4 +1,4 @@
-# Linux I2C
+# gciWire
 
 **move sensor.hpp to gcisensors**
 
