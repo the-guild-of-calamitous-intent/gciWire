@@ -1,12 +1,12 @@
 # v3.14 required for FetchContent_MakeAvailable
 cmake_minimum_required(VERSION 3.21)
 
-PROJECT(linuxi2c
+PROJECT(gciWire
     VERSION "2023.02.10"
     LANGUAGES CXX
 )
 
-set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
@@ -48,13 +48,13 @@ target_include_directories(${PROJECT_NAME} INTERFACE src)
 
 # Examples ====================================================================
 # option(BUILD_EXAMPLES "Examples" ON)
-message(STATUS "Building gciSensors examples is ${BUILD_EXAMPLES}")
+message(STATUS "Building gciWire examples is ${BUILD_EXAMPLES}")
 if (BUILD_EXAMPLES)
     add_subdirectory(examples)
 endif()
 
 # option(BUILD_GTESTS "build gtests" ON)
-message(STATUS "Building gciSensors gtests is ${BUILD_GTESTS}")
+message(STATUS "Building gciWire gtests is ${BUILD_GTESTS}")
 if (BUILD_GTESTS)
     add_subdirectory(gtests)
 endif()

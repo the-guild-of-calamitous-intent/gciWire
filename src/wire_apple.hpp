@@ -58,7 +58,7 @@ dtparam=i2c_arm=on,i2c_arm_baudrate=400000
 #include <stdint.h> // uint8_t
 #include <stddef.h> // size_t
 
-constexpr uint8_t I2C_MAX_BUFFER_SIZE = 32;
+// constexpr uint8_t I2C_MAX_BUFFER_SIZE = 32;
 
 class TwoWire {
 public:
