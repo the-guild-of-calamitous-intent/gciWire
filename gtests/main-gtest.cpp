@@ -1,5 +1,5 @@
 #include <gtest/gtest.h>
-#include "i2c.hpp"
+#include "Wire.hpp"
 
 // Demonstrate some basic assertions.
 TEST(gciSensors, dummy) {
@@ -9,7 +9,7 @@ TEST(gciSensors, dummy) {
   EXPECT_EQ(7 * 6, 42);
 
   TwoWire tw;
-  SensorI2C sen(&tw, 0x33);
+  // SensorI2C sen(&tw, 0x33);
 
   EXPECT_TRUE(true);
 }
