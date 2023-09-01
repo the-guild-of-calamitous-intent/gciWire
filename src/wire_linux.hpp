@@ -61,7 +61,7 @@ extern "C" {
   #include <linux/i2c-dev.h>
 }
 
-// #include <stddef.h>
+#include <stddef.h>    // size_t
 #include <cstdio>      // printf / perror
 #include <cstring>     // memset
 #include <fcntl.h>     // file open

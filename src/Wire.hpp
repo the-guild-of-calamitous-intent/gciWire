@@ -5,8 +5,6 @@
 \**************************************/
 #pragma once
 
-#include <stdint.h> // int types
-
 #if defined(__APPLE__)
   #include "wire_apple.hpp"
 #elif defined(__linux__)
