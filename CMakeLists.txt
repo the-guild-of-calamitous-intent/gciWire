@@ -1,7 +1,7 @@
 # v3.14 required for FetchContent_MakeAvailable
 cmake_minimum_required(VERSION 3.21)
 
-PROJECT(gciWire
+PROJECT(gciwire
     VERSION "2023.02.10"
     LANGUAGES CXX
 )
