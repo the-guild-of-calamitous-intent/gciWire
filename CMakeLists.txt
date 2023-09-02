@@ -46,11 +46,9 @@ endif()
 add_library(${PROJECT_NAME} INTERFACE src)
 target_include_directories(${PROJECT_NAME} INTERFACE src)
 
-if(UNIX AND NOT APPLE)
-    target_link_libraries(${PROJECT_NAME}
-    i2c
-    )
-endif()
+# if(UNIX AND NOT APPLE)
+#     target_link_libraries(${PROJECT_NAME} i2c)
+# endif()
 
 # Examples ====================================================================
 # option(BUILD_EXAMPLES "Examples" ON)
