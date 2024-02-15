@@ -9,4 +9,6 @@
   #include "wire_apple.hpp"
 #elif defined(__linux__)
   #include "wire_linux.hpp"
+// #elif defined(PICO_SDK)
+//   #include "wire_pico.hpp"
 #endif
